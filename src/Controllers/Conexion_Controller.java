@@ -22,7 +22,7 @@ public class Conexion_Controller
             
             Class.forName("com.mysql.jdbc.Driver");
             
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/Proyecto;", "root", "8898");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/Proyecto;", "root", "");
             
         }
         catch (SQLException ex) 
