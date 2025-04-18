@@ -19,20 +19,26 @@
 
 ## 🎯 Descripción del Proyecto
 
-Este proyecto consiste en desarrollar una aplicación de escritorio en **Java con NetBeans**, conectada a una base de datos **MySQL**, que implemente las operaciones básicas **CRUD** (Crear, Leer, Actualizar, Eliminar).  
+Este proyecto consiste en desarrollar una aplicación de escritorio en **Java con NetBeans**, conectada a una base de datos **MySQL**, que implemente las operaciones básicas **CRUD** (Crear, Leer, Actualizar, Eliminar).
 
 La aplicación debe:
 - Seguir el **paradigma de programación orientado a objetos**.
 - Usar **arquitectura MVC** (Modelo - Vista - Controlador).
 - Tener una **interfaz gráfica amigable** construida con **Swing**.
-- Usar únicamente la lógica enseñada en clase (no se permite código copiado de internet).
-- Contar con nombres correctamente definidos en cada componente (`txtNombre`, `tblDatos`, `btnGuardar`, etc.).
+- Utilizar únicamente la lógica enseñada en clase.
+- Definir nombres claros en cada componente (`txtNombre`, `tblDatos`, `btnGuardar`, etc.).
 
 ---
 
 ## 📁 Estructura del Proyecto
 
-/src ├── modelo/ # Clases de entidad y conexión a la base de datos (DAO) ├── vista/ # Formularios gráficos con Swing (JFrame, JPanel) ├── controlador/ # Manejo de eventos y lógica entre modelo y vista └── main/ # Clase principal con método main()
+``` 
+/src
+├── modelo/         # Clases de entidad y conexión a la base de datos
+├── vista/          # Formularios gráficos con Swing
+├── controlador/    # Manejo de eventos y conexión entre vista y modelo
+└── main/           # Clase principal con el método main() 
+``` 
 
 
 ---
@@ -43,9 +49,9 @@ La aplicación debe:
 - Buscar registros
 - Modificar registros
 - Eliminar registros
-- Mostrar datos en tabla (JTable)
+- Mostrar datos en tablas (`JTable`)
 - Validaciones básicas en campos
-- Conexión a MySQL con `PreparedStatement`
+- Conexión segura a MySQL con `PreparedStatement`
 
 ---
 
@@ -53,27 +59,27 @@ La aplicación debe:
 
 | Componente  | Descripción |
 |-------------|-------------|
-| Modelo      | Representa los datos y lógica de base de datos |
-| Vista       | Formulario gráfico con botones, tablas, campos de texto |
-| Controlador | Escucha eventos y coordina entre Vista y Modelo |
+| Modelo      | Representa los datos y lógica de negocio (base de datos) |
+| Vista       | Formulario gráfico con componentes Swing |
+| Controlador | Coordina la interacción entre Vista y Modelo |
 
 ---
 
 ## 💾 Base de Datos
 
-- **Nombre:** `proyecto_final_grupo6`
-- **Script:** Incluido como `script.sql`
-- **Gestor:** MySQL 5.7+
-- **Tablas:** Definidas en base al esquema entregado por la profesora
-- **Índices y vistas:** Aplicados si fueron solicitados en prácticas o tareas
+- **Nombre:** `biblioteca`
+- **Script:** `Script_Biblioteca.sql`
+- **Gestor:** MySQL 5.7+ o superior
+- **Tablas:** Diseñadas según los requerimientos del proyecto de biblioteca
+- **Índices y vistas:** Aplicados en la estructura si son necesarios
 
 ---
 
 ## 🛠️ Requisitos Técnicos
 
-- Java JDK 8+
+- Java JDK 8 o superior
 - NetBeans IDE 8.2 o superior
-- MySQL Server
+- MySQL Server instalado
 - Conector JDBC (`mysql-connector-java-x.x.x.jar`)
 - Sistema operativo: Windows 10+ o equivalente
 
@@ -81,21 +87,27 @@ La aplicación debe:
 
 ## 🚀 Instrucciones de Ejecución
 
-1. Clonar el repositorio o descomprimir el `.zip` del proyecto.
-2. Importar el proyecto en NetBeans.
-3. Ejecutar el script SQL `script.sql` en MySQL para crear la base de datos y las tablas.
-4. Ajustar los datos de conexión en la clase correspondiente (`Conexion.java`).
-5. Ejecutar el archivo principal (`Main.java`) desde NetBeans.
+1. Descargar o clonar el proyecto.
+2. Abrir el proyecto en NetBeans IDE.
+3. Ejecutar el archivo `Script_Biblioteca.sql` en MySQL para crear la base de datos y las tablas.
+4. Configurar los parámetros de conexión a base de datos en la clase `Conexion.java`.
+5. Ejecutar la clase principal `Main.java` desde NetBeans.
+
+---
+
+## 📸 Capturas de pantalla (opcional)
+
+- Las capturas de funcionamiento se encuentran en la carpeta `screenshots/` si fueron solicitadas.
 
 ---
 
 ## 📦 Entregables
 
-- Código fuente del proyecto en Java
-- Script SQL de la base de datos
+- Código fuente del proyecto en Java (NetBeans)
+- Script SQL de creación de base de datos
 - Archivo `README.md`
-- Capturas de pantalla (si aplica)
-- Correo de entrega con copia a todos los integrantes y nota de participación individual
+- Capturas de pantalla del funcionamiento (si aplica)
+- Entrega en archivo `.rar` enviado por correo oficial al profesor
 
 ---
 
@@ -104,10 +116,11 @@ La aplicación debe:
 | Criterio                         | Puntaje |
 |----------------------------------|---------|
 | CRUD funcional y completo        | 20 pts  |
-| Arquitectura MVC                 | 10 pts  |
-| Interfaz amigable (Swing)        | 10 pts  |
-| Conexión correcta a MySQL        | 10 pts  |
-| Organización del proyecto        | 5 pts   |
-| Participación y entrega formal   | 5 pts   |
-| **Total**                        | **60 pts (50%)** |
+| Arquitectura MVC aplicada        | 10 pts  |
+| Interfaz amigable en Swing        | 10 pts  |
+| Conexión correcta a MySQL         | 10 pts  |
+| Organización del proyecto         | 5 pts   |
+| Entrega formal y participación    | 5 pts   |
+| **Total**                        | **50 pts (50% del curso)** |
 
+---
