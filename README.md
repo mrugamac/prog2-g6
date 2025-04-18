@@ -51,6 +51,19 @@ prog2-g6/
 
 ---
 
+## 🗄️ Script de Base de Datos
+
+El proyecto incluye un script para la creación de la base de datos en MySQL.
+
+- 📁 Carpeta: `sql/`
+- 📄 Archivo: `facturacion.sql`
+- 💾 Base de datos: `facturacion`
+- Tablas creadas: `cliente`, `producto`, `categoria`, `modo_pago`, `factura`, `detalle`.
+
+> **Importante:** Ejecutar este script antes de correr el proyecto para asegurar que las tablas existan.
+
+---
+
 ## 🛠️ Funcionalidades
 
 - Insertar registros
