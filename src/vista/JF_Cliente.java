@@ -24,10 +24,10 @@ public class JF_Cliente extends javax.swing.JFrame {
     public void LimpiarTabla()
     {
         
-        for(int i=0; i < Tbl_Cliente.getRowCount(); i++)
+        for(int i = 0; i < Tbl_Cliente.getRowCount(); i++)
         {
-            DefaultTableModel modelo = (DefaultTableModel) Tbl_Cliente.getModel();
-            modelo.removeRow(i);
+            DefaultTableModel m = (DefaultTableModel) Tbl_Cliente.getModel();
+            m.removeRow(i);
             i -= 1;
         }  
     }
@@ -41,13 +41,13 @@ public class JF_Cliente extends javax.swing.JFrame {
         C_Cliente cliente = new C_Cliente();
         TemCli = cliente.cargarTabla();
         
-        DefaultTableModel modelo2 = (DefaultTableModel) Tbl_Cliente.getModel();
+        DefaultTableModel modelo3 = (DefaultTableModel) Tbl_Cliente.getModel();
         
-        for(int i=0; i < TemCli.length; i++)
+        for(int i = 0; i < TemCli.length; i++)
         {
-            modelo2.addRow(TemCli[i]);
+            modelo3.addRow(TemCli[i]);
         }
-        Tbl_Cliente.setModel(modelo2);   
+        Tbl_Cliente.setModel(modelo3);   
     }
     
     //mostrar data 
@@ -55,16 +55,16 @@ public class JF_Cliente extends javax.swing.JFrame {
     { 
         int id_cliente = 0;
         
-        DefaultTableModel modelo2 = (DefaultTableModel) Tbl_Cliente.getModel();
-        String codAuto = String.valueOf(modelo2.getValueAt(Tbl_Cliente.getSelectedRow(), 0));
-        String nombre = String.valueOf(modelo2.getValueAt(Tbl_Cliente.getSelectedRow(), 1));
-        String apellido = String.valueOf(modelo2.getValueAt(Tbl_Cliente.getSelectedRow(), 2));
-        String direccion = String.valueOf(modelo2.getValueAt(Tbl_Cliente.getSelectedRow(), 3));
-        String nacimiento = String.valueOf(modelo2.getValueAt(Tbl_Cliente.getSelectedRow(), 4));
-        String telefono = String.valueOf(modelo2.getValueAt(Tbl_Cliente.getSelectedRow(), 5));
-        String correo = String.valueOf(modelo2.getValueAt(Tbl_Cliente.getSelectedRow(), 6));
+        DefaultTableModel m2 = (DefaultTableModel) Tbl_Cliente.getModel();
+        String id = String.valueOf(m2.getValueAt(Tbl_Cliente.getSelectedRow(), 1));
+        String nombre = String.valueOf(m2.getValueAt(Tbl_Cliente.getSelectedRow(), 2));
+        String apellido = String.valueOf(m2.getValueAt(Tbl_Cliente.getSelectedRow(), 3));
+        String direccion = String.valueOf(m2.getValueAt(Tbl_Cliente.getSelectedRow(), 4));
+        String nacimiento = String.valueOf(m2.getValueAt(Tbl_Cliente.getSelectedRow(), 5));
+        String telefono = String.valueOf(m2.getValueAt(Tbl_Cliente.getSelectedRow(), 6));
+        String correo = String.valueOf(m2.getValueAt(Tbl_Cliente.getSelectedRow(), 7));
   
-        id_cliente = Integer.parseInt(codAuto);
+        id_cliente = Integer.parseInt(id);
         String idC = Integer.toString(id_cliente);
         
         Txt_IdCliente.setText(idC);
@@ -73,8 +73,7 @@ public class JF_Cliente extends javax.swing.JFrame {
         Txt_Direccion.setText(direccion); 
         Txt_Fecha.setText(nacimiento);
         Txt_Telefono.setText(telefono);
-        Txt_Correo.setText(correo);
-           
+        Txt_Correo.setText(correo); 
     }
     
     public void LimpiarCampos()
@@ -117,6 +116,7 @@ public class JF_Cliente extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        Btn_VolverMenu = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tbl_Cliente = new javax.swing.JTable();
 
@@ -228,12 +228,22 @@ public class JF_Cliente extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setText("Datos del Cliente");
 
+        Btn_VolverMenu.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        Btn_VolverMenu.setText("Volver al menú");
+        Btn_VolverMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Btn_VolverMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(257, 257, 257)
+                .addGap(67, 67, 67)
+                .addComponent(Btn_VolverMenu)
+                .addGap(111, 111, 111)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -241,14 +251,16 @@ public class JF_Cliente extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Btn_VolverMenu)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31))
         );
 
         Tbl_Cliente.setBackground(new java.awt.Color(204, 204, 204));
         Tbl_Cliente.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "Nombre", "Apellidos", "Dirección", "Fecha de nacimiento", "Telefono", "Correo electrónico"
@@ -272,6 +284,7 @@ public class JF_Cliente extends javax.swing.JFrame {
             Tbl_Cliente.getColumnModel().getColumn(5).setResizable(false);
             Tbl_Cliente.getColumnModel().getColumn(6).setResizable(false);
         }
+        Tbl_Cliente.getAccessibleContext().setAccessibleName("Clientes Registrados");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -329,12 +342,13 @@ public class JF_Cliente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Lbl_Cliente)
-                    .addComponent(Txt_IdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Btn_Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Lbl_Cliente)
+                        .addComponent(Txt_IdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Txt_Nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -419,8 +433,66 @@ public class JF_Cliente extends javax.swing.JFrame {
 
     private void Btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_GuardarActionPerformed
         // TODO add your handling code here:
+        int id;
+        String nom,ape,direc,fecha,telefono,correo;
+        
+        nom = Txt_Nombre.getText().toString();
+        ape = Txt_Apellidos.getText().toString();
+        direc = Txt_Direccion.getText().toString();
+        fecha = Txt_Fecha.getText().toString();
+        telefono = Txt_Telefono.getText().toString();
+        correo = Txt_Correo.getText().toString();
+        
+        C_Cliente clientes = new C_Cliente();
+        
+        try
+        {
+            if(Txt_Nombre.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Falta ingresar el nombre del cliente ", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(Txt_Apellidos.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Falta ingresar los apellidos del cliente ", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(Txt_Direccion.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Falta ingresar la direccion del cliente ", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(Txt_Fecha.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Falta ingresar la fecha de nacimiento del cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(Txt_Telefono.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Falta ingresar el telefono del cliente", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else if(Txt_Correo.getText().isEmpty())
+            {
+                JOptionPane.showMessageDialog(null, "Falta ingresar el correo electronico del cliente ", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            else
+            {
+                id = clientes.Guardar(nom, ape, direc, fecha, telefono, correo);
+            }
+        }
+        catch(SQLException ex)
+        {
+            Logger.getLogger(JF_Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+        LimpiarTabla();
+        LlenarTabla();
+        LimpiarCampos();       
         
     }//GEN-LAST:event_Btn_GuardarActionPerformed
+
+    private void Btn_VolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_VolverMenuActionPerformed
+        // TODO add your handling code here:
+        JF_Menu obj = new JF_Menu();
+        obj.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_Btn_VolverMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -459,6 +531,7 @@ public class JF_Cliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Btn_Guardar;
+    private javax.swing.JButton Btn_VolverMenu;
     private javax.swing.JLabel Lbl_Apellidos;
     private javax.swing.JLabel Lbl_Cliente;
     private javax.swing.JLabel Lbl_Direccion;
