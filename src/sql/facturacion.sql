@@ -1,59 +1,105 @@
--- Crear base de datos
-CREATE DATABASE IF NOT EXISTS facturacion;
-USE facturacion;
+-- Creacion de la base de datos
+Create database Proyecto;
 
--- Tabla: cliente
-CREATE TABLE cliente (
-    id_cliente INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    apellido VARCHAR(100) NOT NULL,
-    direccion VARCHAR(255),
-    fecha_nacimiento DATE,
-    telefono VARCHAR(20),
-    email VARCHAR(100)
+-- Uso de la base de datos
+use Proyecto;
+
+-- Creacion de las tablas
+create table TB_Cliente
+(
+id_cliente int auto_increment primary key not null,
+nombre varchar(20) not null,
+apellido varchar(20) not null,
+direccion varchar(50) not null,
+nacimiento date,
+telefono varchar(20) not null,
+email varchar(50) not null
 );
 
--- Tabla: categoria
-CREATE TABLE categoria (
-    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    descripcion VARCHAR(255)
+-- Mostramos la tabla cliente
+select * from TB_Cliente;
+-- insertamos valores en la tabla cliente
+insert into TB_Cliente values(1,'Juan', 'Pérez', 'Calle Falsa 123', '1990-05-15', '8765-4321'
+							, 'juan.perez@correo.com');
+
+create table TB_Factura
+(
+num_factura int auto_increment primary key not null,
+pago int not null,
+fecha date,
+nombre int not null,
+foreign key (nombre) references TB_Cliente(id_cliente),
+foreign key (pago) references TB_ModoPago(num_pago)
 );
 
--- Tabla: producto
-CREATE TABLE producto (
-    id_producto INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    precio DECIMAL(10,2) NOT NULL,
-    stock INT NOT NULL,
-    id_categoria INT,
-    FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria)
+-- Mostramos la tabla factura
+select * from TB_Factura;
+-- Insertamos valores en la tabla Factura
+insert into TB_Factura values (1,1,'1990-05-15',1);
+
+delete from TB_Detalle where num_detalle = 1;
+
+create table TB_ModoPago
+(
+num_pago int auto_increment primary key not null,
+nombre varchar(50) not null,
+otros_detalles varchar(100) not null
 );
 
--- Tabla: modo_pago
-CREATE TABLE modo_pago (
-    num_pago INT AUTO_INCREMENT PRIMARY KEY,
-    nombre VARCHAR(100) NOT NULL,
-    otros_detalles VARCHAR(255)
+-- Mostramos las tabla
+select * from TB_ModoPago;
+-- Insertamos valores en 
+insert into TB_ModoPago values(1,'Juan','Efectivo');
+
+create table TB_Detalle
+(
+num_detalle int auto_increment primary key not null,
+factura int auto_increment not null,
+producto int not null,
+cantidad int,
+precio float,
+foreign key (producto) references TB_Producto(id_producto),
+foreign key(factura) references TB_Factura(num_factura)
 );
 
--- Tabla: factura
-CREATE TABLE factura (
-    num_factura INT AUTO_INCREMENT PRIMARY KEY,
-    id_cliente INT,
-    fecha DATE,
-    num_pago INT,
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
-    FOREIGN KEY (num_pago) REFERENCES modo_pago(num_pago)
+-- Mostrar la tablas
+select * from TB_Detalle;
+-- Insercion de datos
+insert into TB_Detalle values (1,1,1,100,145.2);
+insert into TB_Detalle values (2,1,1,100,145.2);
+insert into TB_Detalle values (3,1,2,100,145.2);
+
+select num_detalle, factura, cantidad, precio from TB_Detalle;
+update TB_Detalle set num_detalle = 1, factura = 1, cantidad = 200, precio = 150  where factura = 1;
+
+create table TB_Producto
+(
+id_producto int auto_increment primary key not null,
+nombre varchar(20) not null,
+precio float not null,
+stock int not null,
+categoria int,
+moneda varchar(20) not null,
+foreign key(categoria) references TB_Categoria(id_categoria)
 );
 
--- Tabla: detalle
-CREATE TABLE detalle (
-    num_detalle INT AUTO_INCREMENT PRIMARY KEY,
-    id_factura INT,
-    id_producto INT,
-    cantidad INT,
-    precio DECIMAL(10,2),
-    FOREIGN KEY (id_factura) REFERENCES factura(num_factura),
-    FOREIGN KEY (id_producto) REFERENCES producto(id_producto)
+-- Mostrar la tabla
+select * from TB_Producto;
+-- Insertar valores en la tabla producto
+insert into TB_Producto values (1,'Helados',145.2,100,1);
+insert into TB_Producto values (2,'Higiene',145.2,100,1);
+
+create table TB_Categoria
+(
+id_categoria int auto_increment primary key not null,
+nombre varchar(50) not null,
+descripcion varchar(100) not null
 );
+
+-- Mostramos la tabla
+select * from TB_Categoria;
+-- Insertamos valores en la tabla Categoria
+insert into TB_Categoria values (1,'Conveniencia','Varios');
+
+insert into TB_Categoria values (2,'Electrónicos', 'Dispositivos electrónicos y accesorios',
+3,'Ropa', 'Prendas de vestir para todas las edades',4,'Alimentos', 'Productos comestibles y bebidas');
